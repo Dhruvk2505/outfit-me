@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Outfit Me</title>
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="auth-body">
+
+    <div class="auth-container">
+        <!-- Screen 1: Email Input -->
+        <div id="email-view">
+            <div class="auth-header">
+                <h1>Outfit Me</h1>
+                <h2>Login or Sign Up</h2>
+            </div>
+            <p class="auth-subtext">Enter your email to get started. We'll send you a magic link to sign in.</p>
+            <form id="email-form">
+                <div class="form-group">
+                    <input type="email" id="email-input" placeholder="Enter your email" required>
+                    <p class="error-message" id="email-error"></p>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Sign-In Link</button>
+            </form>
+        </div>
+
+        <!-- Screen 2: Success Message (Initially Hidden) -->
+        <div id="success-view" style="display: none;">
+            <div class="auth-header">
+                <h2>Check Your Email</h2>
+            </div>
+            <p class="auth-subtext">We've sent a secure sign-in link to <strong id="user-email-display"></strong>. Click the link to complete your login.</p>
+        </div>
+    </div>
+    
+    <!-- We will handle all logic, including Firebase init, in the main app.js file -->
+    <script type="module" src="../assets/app.js"></script>
+</body>
+</html>

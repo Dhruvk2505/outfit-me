@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style AI | Home</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">Style AI</div>
+        <nav>
+            <a href="index.html" class="active">Home</a>
+            <a href="pages/catalog.html">Catalog</a>
+            <a href="pages/wardrobe.html">Wardrobe</a>
+            <a href="pages/builder.html">Outfit Builder</a>
+            <a href="pages/measurement.html">Scan</a>
+        </nav>
+        <div class="profile-link">
+            <a href="pages/profile.html">Profile</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="welcome-section">
+            <div class="welcome-card">
+                <h1>Welcome back, Alex!</h1>
+                <p>Ready to build your next look?</p>
+                <div class="quick-access">
+                    <a href="pages/measurement.html" class="quick-btn">Measurement</a>
+                    <a href="pages/builder.html" class="quick-btn">Outfit Builder</a>
+                    <a href="pages/catalog.html" class="quick-btn">Catalog</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="quick-actions-section">
+            <h2>Quick Actions</h2>
+            <div class="action-grid">
+                <button class="action-card" data-action="start-scan">
+                    <i class="icon-camera">📷</i>
+                    <span>Start Measurement</span>
+                </button>
+                <button class="action-card" data-action="build-outfit">
+                    <i class="icon-hanger">👚</i>
+                    <span>Build Outfit Now</span>
+                </button>
+                <button class="action-card" data-action="get-recommendation">
+                    <i class="icon-ai">✨</i>
+                    <span>Get Recommendation</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="wardrobe-suggest-section">
+            <h2>Suggested from my Wardrobe</h2>
+            <div class="wardrobe-carousel">
+                <div class="wardrobe-item">
+                    <img src="assets/images/item-1.jpg" alt="Navy Blazer" onerror="this.src='https://via.placeholder.com/150x200?text=Item+1'">
+                    <p>Navy Blazer</p>
+                </div>
+                <div class="wardrobe-item">
+                    <img src="assets/images/item-2.jpg" alt="White T-shirt" onerror="this.src='https://via.placeholder.com/150x200?text=Item+2'">
+                    <p>White T-shirt</p>
+                </div>
+                <div class="wardrobe-item">
+                    <img src="assets/images/item-3.jpg" alt="Dark Jeans" onerror="this.src='https://via.placeholder.com/150x200?text=Item+3'">
+                    <p>Dark Jeans</p>
+                </div>
+                </div>
+        </section>
+
+        <section class="recent-outfits-section">
+            <h2>Recent Outfits</h2>
+            <p class="placeholder-text">You haven't saved any outfits yet. Start building one!</p>
+        </section>
+    </main>
+
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

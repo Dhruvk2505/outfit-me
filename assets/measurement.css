@@ -1,0 +1,139 @@
+/* Custom styles for the Measurement Page */
+
+.measurement-page h1 {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.measurement-page p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.scan-area-container {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* Camera and Canvas Styling */
+.camera-feed-box {
+    position: relative;
+    flex: 2; /* Takes up 2/3 of the width */
+    aspect-ratio: 3 / 4; /* Maintain portrait aspect ratio */
+    background-color: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+#webcam-video, #scan-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#scan-canvas {
+    z-index: 10; /* Make sure canvas is on top of video */
+}
+
+/* Instruction Overlay */
+#instruction-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 20;
+    transition: opacity 0.3s;
+}
+
+#instruction-content {
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Scan Info Panel */
+.scan-info-panel {
+    flex: 1; /* Takes up 1/3 of the width */
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+#checklist {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+#checklist li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    color: var(--text-color);
+}
+
+.feedback-box {
+    padding: 15px;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Chatbot Widget */
+#ai-chatbot-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    height: 400px; /* Hidden by default in a real app, only shows when active */
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 50;
+    border: 1px solid var(--primary-color);
+}
+
+#chatbot-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#chatbot-messages {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+#chatbot-input {
+    padding: 10px;
+    border: none;
+    border-top: 1px solid #ddd;
+    width: calc(100% - 70px);
+}
+
+#chatbot-send-btn {
+    width: 70px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+}

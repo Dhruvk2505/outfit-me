@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Body Type - Outfit Me</title>
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <div class="main-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header"><h1>Outfit Me</h1></div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="measurement.html">Measurement</a></li>
+                    <li><a href="bodytype.html" class="active">Body Type</a></li>
+                    <li><a href="accessories.html">Accessories</a></li>
+                    <li><a href="wardrobe.html">Wardrobe</a></li>
+                    <li><a href="outfit-builder.html">Outfit Builder</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="page-content bodytype-page">
+            <div class="bodytype-container">
+                <div class="result-header">
+                    <h2 id="bodytype-title">Analyzing Your Shape...</h2>
+                    <p id="bodytype-summary">Please use the Measurement page first to get your result.</p>
+                </div>
+
+                <div class="body-type-info-grid">
+                    <div class="body-type-card" id="hourglass-card">
+                        <h3>Hourglass</h3>
+                        <p>Bust and hips are roughly the same width, with a well-defined, narrower waist. Balanced proportions, naturally curvy silhouette.</p>
+                        <h4>Styling Tip:</h4>
+                        <p>Outfits that highlight the waist (belts, wrap dresses) enhance the natural balance.</p>
+                    </div>
+                    <div class="body-type-card" id="pear-card">
+                        <h3>Pear (Triangle)</h3>
+                        <p>Hips are wider than the bust and shoulders. Waist is usually well-defined. Lower body is more prominent compared to the upper body.</p>
+                        <h4>Styling Tip:</h4>
+                        <p>Emphasize shoulders and neckline with structured tops or statement accessories to balance the proportions.</p>
+                    </div>
+                    <div class="body-type-card" id="apple-card">
+                        <h3>Apple (Inverted Oval)</h3>
+                        <p>Fuller midsection, broader shoulders, and narrower hips. Waist is less defined. Weight tends to gather around the tummy area.</p>
+                        <h4>Styling Tip:</h4>
+                        <p>Flowing tops, empire waists, and A-line dresses help create a balanced silhouette.</p>
+                    </div>
+                    <div class="body-type-card" id="rectangle-card">
+                        <h3>Rectangle (Athletic)</h3>
+                        <p>Bust, waist, and hips are fairly uniform in width. Waistline is not very defined. Lean, straight silhouette without strong curves.</p>
+                        <h4>Styling Tip:</h4>
+                        <p>Use layers, belts, or peplum cuts to add curves and shape.</p>
+                    </div>
+                    <div class="body-type-card" id="inverted-triangle-card">
+                        <h3>Inverted Triangle</h3>
+                        <p>Shoulders and bust are broader than the hips. Waist may or may not be defined. Upper body is more prominent compared to the lower body.</p>
+                        <h4>Styling Tip:</h4>
+                        <p>Flowy skirts, wide-leg pants, or A-line silhouettes add balance to the lower half.</p>
+                    </div>
+                    <div class="body-type-card" id="diamond-card">
+                        <h3>Diamond</h3>
+                        <p>Waist is the broadest part of the body, with narrower shoulders and hips. Bust is often smaller. Midsection appears fuller, with slim arms and legs.</p>
+                        <h4>Styling Tip:</h4>
+                        <p>Empire waists and vertical patterns elongate the body, drawing attention away from the midsection.</p>
+                    </div>
+                </div>
+                
+                <div class="quotes-section">
+                    <p class="quote" id="random-quote"></p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cameraRatio = localStorage.getItem('cameraRatio'); // shoulder-to-hip
+            const manualMeasurements = localStorage.getItem('manualMeasurements');
+            const titleEl = document.getElementById('bodytype-title');
+            const summaryEl = document.getElementById('bodytype-summary');
+            
+            let bodyType = '';
+            let cardToHighlight = '';
+
+            // --- ADVANCED ANALYSIS LOGIC ---
+            if (cameraRatio) {
+                const ratioValue = parseFloat(cameraRatio);
+                if (ratioValue > 1.05) { cardToHighlight = 'inverted-triangle-card'; } 
+                else if (ratioValue < 0.95) { cardToHighlight = 'pear-card'; } 
+                else { cardToHighlight = 'rectangle-card'; }
+            } else if (manualMeasurements) {
+                const data = JSON.parse(manualMeasurements);
+                const S = parseFloat(data.shoulder);
+                const B = parseFloat(data.chest || data.bust);
+                const W = parseFloat(data.waist);
+                const H = parseFloat(data.hips);
+
+                if (S && B && W && H) {
+                    const shoulderBustDiff = Math.abs(S - B);
+                    const shoulderHipDiff = Math.abs(S - H);
+                    const bustHipDiff = Math.abs(B - H);
+                    
+                    const highPoint = Math.max(S, B, H);
+                    const lowPoint = Math.min(S, B, H);
+                    
+                    if ((highPoint - lowPoint) / highPoint < 0.05) { // Shoulders, bust, hips within 5%
+                        if (W / S < 0.75 && W / H < 0.75) {
+                            cardToHighlight = 'hourglass-card'; // Defined waist
+                        } else {
+                            cardToHighlight = 'rectangle-card'; // Not defined waist
+                        }
+                    } else if (S > (H * 1.05) && B > (H * 1.05)) {
+                        cardToHighlight = 'inverted-triangle-card'; // Shoulders/Bust clearly larger than hips
+                    } else if (H > (S * 1.05) && H > (B * 1.05)) {
+                        cardToHighlight = 'pear-card'; // Hips clearly larger than shoulders/bust
+                    } else if (W > S && W > H) {
+                        cardToHighlight = 'apple-card'; // Waist is wider than shoulder and hips
+                    } else {
+                        // Fallback for less distinct shapes, like Diamond
+                        cardToHighlight = 'rectangle-card'; 
+                    }
+                }
+            }
+
+            if (cardToHighlight) {
+                const card = document.getElementById(cardToHighlight);
+                bodyType = card.querySelector('h3').textContent;
+                titleEl.textContent = `Your Estimated Body Type: ${bodyType}`;
+                summaryEl.textContent = `Based on your measurements, you have a beautiful ${bodyType} shape. Here are some tips to celebrate your unique silhouette!`;
+                card.classList.add('highlighted');
+            }
+
+            // --- Random Quote Logic ---
+            const quoteEl = document.getElementById('random-quote');
+            const quotes = [ "“Beauty comes in all shapes and sizes.”", "“Stop trying to fix your body. It was never broken.”", "“There's no need to be perfect to inspire others. Let others get inspired by how you deal with your imperfections.”" ];
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            quoteEl.textContent = quotes[randomIndex];
+        });
+    </script>
+</body>
+</html>

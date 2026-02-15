@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Accessories Assistant - Style AI</title>
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <div class="main-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header"><h1>Outfit Me</h1></div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="measurement.html">Measurement</a></li>
+                    <li><a href="bodytype.html">Body Type</a></li>
+                    <li><a href="accessories.html">Accessories</a></li>
+                    <li><a href="wardrobe.html">Wardrobe</a></li>
+                    <li><a href="outfit-builder.html">Outfit Builder</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="page-content">
+            <div class="page-header">
+                <h2>AI Accessories Assistant</h2>
+            </div>
+
+            <div class="accessories-container">
+                <div class="chat-assistant">
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message ai-message">
+                            <p>Hello! Describe an outfit, and I'll recommend the perfect accessories.</p>
+                        </div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="user-input" placeholder="e.g., I have a long orange gown...">
+                        <button id="send-btn">Send</button>
+                    </div>
+                </div>
+
+                <div class="ai-assistant">
+                    <div class="ai-assistant-header">
+                        <h3>AI Recommendations</h3>
+                    </div>
+                    <div id="recommendation-results">
+                        <p>Your recommended accessories will appear here.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="../assets/app.js"></script>
+</body>
+</html>
